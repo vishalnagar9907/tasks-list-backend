@@ -1,16 +1,16 @@
-function generatePoints(n, start_point = [0, 0], radius = 20) {
+function genHexPoints(n, start = [0, 0], r = 20) {
     if (n <= 0) {
         return [];
     }
 
-    const points = [start_point];
+    const points = [start];
     let ring = 1;
 
     while (points.length < n) {
         for (let i = 0; i < 6; i++) {
-            const angle = (2 * Math.PI * i) / 6;
-            const x = start_point[0] + ring * radius * Math.cos(angle);
-            const y = start_point[1] + ring * radius * Math.sin(angle);
+            const a = (2 * Math.PI * i) / 6;
+            const x = start[0] + ring * r * Math.cos(a);
+            const y = start[1] + ring * r * Math.sin(a);
             points.push([x, y]);
         }
 
@@ -20,10 +20,11 @@ function generatePoints(n, start_point = [0, 0], radius = 20) {
     return points.slice(0, n);
 }
 
+// Example usage:
 const numPoints = 20;
 const startPoint = [0, 0];
 const hexRadius = 20;
 
-const hexagonalPoints = generatePoints(numPoints, startPoint, hexRadius);
+const hexPoints = genHexPoints(numPoints, startPoint, hexRadius);
 
-console.log(hexagonalPoints);
+console.log(hexPoints);
